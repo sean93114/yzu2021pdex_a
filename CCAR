@@ -1,31 +1,57 @@
-//
-// main.cpp
-// OOP_DEMO_CAR
-//
-// Created by wpfang on 2021/3/8.
-// Copyright © 2021 wpfang. All rights reserved.
-//
+/**
+ *2021/03/08 程式設計上課範例
+ *內容：
+ *private,protected,public,constructor,destructor,class heritage
+ *
+ *@author   1052062游釋恩
+ *@version  1.1
+ *@date     2021/03/12
+ */
+ 
 #include <iostream>
 #include <string>
 using namespace std;
+
+/**
+ *產生一台汽車叫CCAR
+ *class內都是在描述這台汽車的功能，外型等．．．
+ */
 class CCAR {
+/**
+ *private的內容只有這個程式內可存取
+ */
 private:
+string nickname;/**車子的名稱*/
+/**
+ *protected的內容繼承者也可以用
+ */
 string nickname;
 protected:
-int light;
-int wheel;
+int light;/**車子有燈*/
+int wheel;/*＊車子有輪子*/
+/**
+ *public的內容所有範圍皆可存取
+ */
 public:
+/**
+ *constructor 建構子：
+ *創建一個特殊的function與類別相同名稱，進入記憶體時自動執行
+ */
 CCAR() :light(2)
 {
-wheel = 5;
+wheel = 5;/**車子有五個輪子*/
 cout << "car's constructor(wheel=" << wheel << ")" << endl;
 }
 CCAR(string nickname) :light(2)
 {
 wheel = 5;
-this->nickname = nickname;
+this->nickname = nickname;/*前者的nickname為第28行private中宣告的
 cout << "car's constructor(nickname=" << nickname << ")" << endl;
 }
+/**
+ *destructor 解構子：
+ *創建一個特殊的function與類別相同名稱前面加上~，離開記憶體前自動執行
+ */
 ~CCAR()
 {
 cout << "car's destructor" << "(" << nickname << ")" << endl;
@@ -44,6 +70,9 @@ cout << "car's turn" << endl;
 }
 };
 //--------------------------
+/**
+ *有個類別叫CBMW，他繼承了CCAR的所有功能
+ */
 class CBMW : public CCAR {
 public:
 CBMW() { light = 4; wheel = 4; cout << "bmw's constructor" << endl; }
