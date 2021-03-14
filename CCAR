@@ -77,22 +77,33 @@ class CBMW : public CCAR {
 public:
 CBMW() { light = 4; wheel = 4; cout << "bmw's constructor" << endl; }
 ~CBMW() { cout << "bmw's destructor" << endl; }
-void Abs()
+
+void Abs()/*!新增功能（寫一個不存在的）->除了繼承CCAR的以外的新功能*/
 {
 cout << "bmw's abs" << endl;
 }
-void start()
+void start()/*!覆蓋舊功能（寫一個一樣的）
 {
 cout << "bmw's start" << endl;
+/**
+ *解析運算子->當區域變數（CBMW中的start）覆蓋了全域變數（CCAR中的start）時，使用解析運算子來存取全域變數
+ */
 CCAR::start();//scope operator
 
 }
 };
 //--------------------------
 int main(int argc, const char * argv[]) {
-CBMW bmw;
+CBMW bmw;/*!用CBMW宣告一個變數叫bmw，他繼承了CCAR的所有功能*/
+/**
+ *此行運算邏輯為->尋找class CBMW->尋找繼承來源的CCAR->執行CCAR建構子->執行CBMW建構子
+ *印出->car's constructor(wheel=5)->endl->bmw's constructor
+ */
+
 // bmw.light=3;
 bmw.start();
+/**
+ *尋找class CBMW中的start，但因為解析運算子所以會執行CCAR的建構子
 bmw.Abs();
 bmw.stop();
 
